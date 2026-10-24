@@ -53,7 +53,9 @@ public class KoboSettingsService {
                         .syncEnabled(false)
                         .build());
 
-        ensureKoboShelfExists(user.getId());
+        if (entity.isSyncEnabled()) {
+            ensureKoboShelfExists(user.getId());
+        }
         repository.save(entity);
 
         return mapToDto(entity);
